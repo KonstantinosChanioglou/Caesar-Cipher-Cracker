@@ -25,7 +25,7 @@ def decrypt(text,key):
     return ans
 
 def executeBruteForceAttack(text):
-    return [decrypt(text,key) for key in range(26)]
+    return [decrypt(text,key) for key in range(26)] #try all the 26 possible keys for decryption
 
 def main():
 
