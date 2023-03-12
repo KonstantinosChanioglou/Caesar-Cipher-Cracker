@@ -7,20 +7,19 @@ this technique a brute-force attack.
 '''
 
 
-def encrypt(text,n):
+def encrypt(text,key):
     ans = ""
-    # iterate over the given text
-    for i in range(len(text)):
+    for i in range(len(text)): # iterate over the given text
         ch = text[i]
         if ch==" " or not ch.isalpha(): # check if space or mark then simply add it
             ans+=ch
         elif (ch.isupper()): # check if a character is uppercase then encrypt it accordingly 
-            ans += chr((ord(ch) + n-65) % 26 + 65) #A in ASCII is 65
+            ans += chr((ord(ch) + key-65) % 26 + 65) #A in ASCII is 65
         else: # check if a character is lowercase then encrypt it accordingly
-            ans += chr((ord(ch) + n-97) % 26 + 97) #a in ASCII is 97
+            ans += chr((ord(ch) + key-97) % 26 + 97) #a in ASCII is 97
     return ans
 
-def decrypt(text,n):
+def decrypt(text,key):
     ans = ""
     for i in range(len(text)): # iterate over the given text
 
@@ -28,14 +27,14 @@ def decrypt(text,n):
         if ch==" " or not ch.isalpha(): # check if space or mark then simply add it
             ans+=ch
         elif (ch.isupper()): # check if a character is uppercase then encrypt it accordingly 
-            ans += chr((ord(ch) - n-65) % 26 + 65) #A in ASCII is 65
+            ans += chr((ord(ch) - key-65) % 26 + 65) #A in ASCII is 65
         else: # check if a character is lowercase then encrypt it accordingly
-            ans += chr((ord(ch) - n-97) % 26 + 97) #a in ASCII is 97
+            ans += chr((ord(ch) - key-97) % 26 + 97) #a in ASCII is 97
     
     return ans
 
 def executeBruteForceAttack(text):
-    return [decrypt(text,i) for i in range(26)]
+    return [decrypt(text,key) for key in range(26)]
 
 def main():
 
